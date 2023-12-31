@@ -7,7 +7,7 @@ export const ThemeContextProvider = ({ children }) => {
   const [themeState, setThemeState] = useState('light');
 
   const toggleTheme=()=>{
-    themeState=='light' ? setThemeState('dark') : setThemeState('light')
+    themeState==='light' ? setThemeState('dark') : setThemeState('light')
   }
 
   return (

@@ -4,7 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useAlertContext } from 'src/context/alertContext';
 import Snackbar from '@mui/material/Snackbar';
 export default function Alert() {
-  const { isOpen, duration, type, message, onClose } = useAlertContext();
+  const { isOpen, duration, message, onClose } = useAlertContext();
   const action = (
     <React.Fragment>
       <IconButton

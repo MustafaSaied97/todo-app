@@ -40,7 +40,7 @@ export default function ModalForm({open,mode,handleClose,data={},actions}) {
   const handleSubmit = () => {
     setIsTouched(true)
     if(formData.title===''|| formData.description==='') return
-    mode=='add'?actions.onAddItem(formData):actions.onEditItem(formData)
+    mode==='add'?actions.onAddItem(formData):actions.onEditItem(formData)
     setIsTouched(false)
 
     handleClose()
@@ -55,7 +55,7 @@ export default function ModalForm({open,mode,handleClose,data={},actions}) {
         open={open}
       >
         <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-          {mode=='add'?
+          {mode==='add'?
           'Add new Task':
           `Task: ${data.title}`
           }
@@ -103,7 +103,7 @@ export default function ModalForm({open,mode,handleClose,data={},actions}) {
           helperText={isTouched&&formData?.description === "" ? 'Empty!' : ' '}
         />
         <TextField 
-          sx={{ mb: 2,display: mode=='add'?'none':'' }}  
+          sx={{ mb: 2,display: mode==='add'?'none':'' }}  
           multiline
           rows={1}
           id="created_at" 
@@ -115,7 +115,7 @@ export default function ModalForm({open,mode,handleClose,data={},actions}) {
           onChange={handleChange}
           />
         <TextField 
-          sx={{ mb: 2,display: mode=='add'?'none':''  }}  
+          sx={{ mb: 2,display: mode==='add'?'none':''  }}  
           multiline
           rows={1}
           id="finished_at" 
@@ -127,7 +127,7 @@ export default function ModalForm({open,mode,handleClose,data={},actions}) {
           onChange={handleChange}
           />
         <TextField 
-          sx={{ mb: 2,display: mode=='add'?'none':''  }} 
+          sx={{ mb: 2,display: mode==='add'?'none':''  }} 
           multiline
           rows={1} 
           id="archive_at" 
@@ -143,7 +143,7 @@ export default function ModalForm({open,mode,handleClose,data={},actions}) {
         
         <DialogActions>
           <Button autoFocus onClick={handleSubmit}>
-            {mode=='add'?
+            {mode==='add'?
           'Submit':
           ' Save changes'
 
