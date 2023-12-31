@@ -113,7 +113,6 @@ export default function TodoPage() {
     }
   };
   useEffect(()=>{
-    console.log('tasks',tasks);
     if(tasks.length==0){
       LocalStorage({type:'set',key:'tasks',value:[]})
       return
@@ -122,7 +121,6 @@ export default function TodoPage() {
     
   },[tasks])
   useEffect(()=>{
-    console.log('tasks',tasks);
     const tasksLocal = LocalStorage({type:'get',key:'tafesks'})||[]
     setTasks([...tasksLocal])
     getWeatherData()

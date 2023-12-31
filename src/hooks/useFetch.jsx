@@ -18,11 +18,9 @@ export default function useFetch({ method, url, body = {}},deps=[]) {
             cancelToken: source.token
         })
         .then((res) => {
-            console.log('res',res);
             res?.data && setData(res.data);
         })
         .catch((err) => {
-            console.log('err',err);
             setError('An error occurred. Awkward..');
         }).finally(()=>{
             setLoading(false);
