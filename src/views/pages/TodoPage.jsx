@@ -56,7 +56,7 @@ export default function TodoPage() {
       handleCloseModal()
     },
     onEditItem:(taskData)=>{
-      const tasksClone=tasks.map((taskItem)=>taskItem.id==taskData.id? taskData : taskItem)
+      const tasksClone=tasks.map((taskItem)=>taskItem.id===taskData.id? taskData : taskItem)
       setTasks(tasksClone)
       handleCloseModal()
     },
@@ -66,7 +66,7 @@ export default function TodoPage() {
     },
     onToggleArchiveItem:(taskData)=>{
       const tasksClone=tasks.map((taskItem)=>{
-        if(taskItem.id==taskData.id){
+        if(taskItem.id===taskData.id){
           const newArchiveState=!taskData.is_archived
           onOpen({type:'success',message:`${taskData.title} ${newArchiveState?'archived':'removed from archived'}`})
           return{
@@ -82,7 +82,7 @@ export default function TodoPage() {
     },
     onToggleCheckedItem:(taskData)=>{
       const tasksClone=tasks.map((taskItem)=>{
-        if(taskItem.id==taskData.id){
+        if(taskItem.id===taskData.id){
           const newCheckedState=!taskData.is_checked
           return{
             ...taskData,
@@ -113,7 +113,7 @@ export default function TodoPage() {
     }
   };
   useEffect(()=>{
-    if(tasks.length==0){
+    if(tasks.length===0){
       LocalStorage({type:'set',key:'tasks',value:[]})
       return
     }  

@@ -31,7 +31,7 @@ export default function Header() {
             sx={{ mr: 2 }}
             onClick={toggleTheme}
           >
-            {themeState=='light'?<Brightness4OutlinedIcon />:<Brightness4RoundedIcon />}
+            {themeState==='light'?<Brightness4OutlinedIcon />:<Brightness4RoundedIcon />}
           </IconButton>
         </Toolbar>
       </AppBar>
