@@ -131,8 +131,8 @@ export default function TodoPage() {
     <section>
       <ModalForm open={isOpenModal} mode={mode} handleClose={handleCloseModal} data={task} actions={actions} />
       <Stack sx={{ pt: 1 }} spacing={{ xs: 2, sm: 2 }} direction='row' useFlexGap flexWrap='wrap' justifyContent='center' alignItems='center'>
-
-      {Object.keys(weatherData).length&&!isLoading?
+      {/* */}
+      { Object.keys(weatherData).length&&!isLoading?
         <WeatherCard 
           temp={weatherData?.main?.temp}
           main={weatherData?.weather[0]?.main}
@@ -141,7 +141,7 @@ export default function TodoPage() {
           iconId={weatherData?.weather[0]?.icon}
         />
         :
-        <Skeleton animation="wave" variant="rectangular" width={400} height={100} />
+        <Skeleton animation="wave" variant="rectangular" sx={{width:{xs:"80%",sm:"35%"},borderRadius: 2}} height={150} />
       }
       </Stack>
       <Stack sx={{ mt: 4 }} spacing={{ xs: 2, sm: 2 }} direction='row' useFlexGap flexWrap='wrap' justifyContent='flex-end' alignItems='center'>

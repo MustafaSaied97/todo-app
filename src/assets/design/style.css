@@ -1,28 +1,8 @@
-@font-face {
-  font-family: 'SouthernAire';
-  src: url(../fonts/SouthernAire_Personal_Use_Only/SouthernAire_Personal_Use_Only.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Simplemade';
-  src: url(../fonts/Simplemade/SimplemadeFontDEMO-DEMO.ttf) format('truetype'),
-  url(../fonts/Simplemade/SimplemadeFontDEMO-DEMO.otf) format('otf');
-}
-@font-face {
-  font-family: 'Rajdhani';
-  src: url(../fonts/Rajdhani/Rajdhani-Light.ttf) format('truetype'),
-    url(../fonts/Rajdhani/Rajdhani-Regular.ttf) format('truetype'),
-    url(../fonts/Rajdhani/Rajdhani-Medium.ttf) format('truetype'),
-    url(../fonts/Rajdhani/Rajdhani-SemiBold.ttf) format('truetype'),
-    url(../fonts/Rajdhani/Rajdhani-Bold.ttf) format('truetype');
-}
+
 
 @font-face {
   font-family: 'Orbitron';
   src: url(../fonts/Orbitron/Orbitron-VariableFont_wght.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Aldrich';
-  src: url(../fonts/Aldrich/Aldrich-Regular.ttf) format('truetype');
 }
 
 body {
