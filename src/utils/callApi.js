@@ -36,13 +36,13 @@ export async function callApi({ method, url, body = {}, headers = {}, withFiles 
   })
     .then((response) => response.data)
     .catch((error) => {
-      const errorResponse=error.response
+      const errorResponse = error.response;
       switch (errorResponse?.status) {
         case 404: {
           break;
         }
         default:
-          () => {};
+          break; 
       }
       return Promise.reject(errorResponse);
     });
