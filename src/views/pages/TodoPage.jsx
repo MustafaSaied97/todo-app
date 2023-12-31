@@ -3,10 +3,25 @@ import Stack from '@mui/material/Stack';
 import Fab from '@mui/material/Fab';
 import Tooltip from '@mui/material/Tooltip';
 import AddIcon from '@mui/icons-material/Add';
+import Skeleton from '@mui/material/Skeleton';
+  import { useAlertContext } from 'src/context/alertContext';
+
 import { getUID,LocalStorage, ENDPOINTS, getCurrentLocation,callApi } from 'src/utils';
 import { ModalForm, Task,WeatherCard } from 'src/components';
 import moment from 'moment'
+import emptyTasksImg from 'src/assets/images/empty-tasks.png'
+const defaultTaskData = {
+  title: '',
+  description: '',
 
+  created_at: '',
+
+  is_archived:false,
+  archive_at: '',
+
+  is_checked: false,
+  finished_at: '',
+};
 export default function TodoPage() {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [mode, setMode] = useState('add');
@@ -14,19 +29,7 @@ export default function TodoPage() {
   const [task, setTask] = useState({});
   const [weatherData, setWeatherData] = useState({})
   const [isLoading, setisLoading] = useState(false)
-
-  const defaultTaskData = {
-    title: '',
-    description: '',
-
-    created_at: '',
-
-    is_archived:false,
-    archive_at: '',
-
-    is_checked: false,
-    finished_at: '',
-  };
+  const { onOpen } = useAlertContext();
   const handleOpenModal = ({ modeType, taskData }) => {
     if (!modeType || !Object.keys(taskData).length) return;
     setTask(taskData);
@@ -65,6 +68,7 @@ export default function TodoPage() {
       const tasksClone=tasks.map((taskItem)=>{
         if(taskItem.id==taskData.id){
           const newArchiveState=!taskData.is_archived
+          onOpen({type:'success',message:`${taskData.title} ${newArchiveState?'archived':'removed from archived'}`})
           return{
             ...taskData,
             is_archived:newArchiveState,
@@ -109,14 +113,18 @@ export default function TodoPage() {
     }
   };
   useEffect(()=>{
+    console.log('tasks',tasks);
     if(tasks.length==0){
-      const tasksLocal = LocalStorage({type:'get',key:'tasks'})||[]
-      setTasks([...tasksLocal])
+      LocalStorage({type:'set',key:'tasks',value:[]})
       return
-    }
+    }  
     LocalStorage({type:'set',key:'tasks',value:tasks})
+    
   },[tasks])
   useEffect(()=>{
+    console.log('tasks',tasks);
+    const tasksLocal = LocalStorage({type:'get',key:'tafesks'})||[]
+    setTasks([...tasksLocal])
     getWeatherData()
   },[])
  
@@ -124,7 +132,9 @@ export default function TodoPage() {
   return (
     <section>
       <ModalForm open={isOpenModal} mode={mode} handleClose={handleCloseModal} data={task} actions={actions} />
-      {Object.keys(weatherData).length&&
+      <Stack sx={{ pt: 1 }} spacing={{ xs: 2, sm: 2 }} direction='row' useFlexGap flexWrap='wrap' justifyContent='center' alignItems='center'>
+
+      {Object.keys(weatherData).length&&!isLoading?
         <WeatherCard 
           temp={weatherData?.main?.temp}
           main={weatherData?.weather[0]?.main}
@@ -132,7 +142,10 @@ export default function TodoPage() {
           time={moment().format('lll')}
           iconId={weatherData?.weather[0]?.icon}
         />
+        :
+        <Skeleton animation="wave" variant="rectangular" width={400} height={100} />
       }
+      </Stack>
       <Stack sx={{ mt: 4 }} spacing={{ xs: 2, sm: 2 }} direction='row' useFlexGap flexWrap='wrap' justifyContent='flex-end' alignItems='center'>
         <Tooltip title='Add task' arrow>
           <Fab color='primary' aria-label='add' onClick={actions.openAddModal}>
@@ -141,10 +154,11 @@ export default function TodoPage() {
         </Tooltip>
       </Stack>
       {/* ListTasks  */}
-      <Stack spacing={5} sx={{ width: '100%', mt: 6 }}>
+      <Stack spacing={5} sx={{ width: '100%', mt: 6 }} justifyContent='center'>
         {tasks.map((taskItem, index) => (
           <Task taskItem={taskItem} actions={actions} key={index} />
         ))}
+        {!tasks.length&&<img src={emptyTasksImg}  style={{marginLeft:'auto',marginRight:'auto',width:'100%',maxWidth:'400px'}} alt="" />}
       </Stack>
     </section>
   );

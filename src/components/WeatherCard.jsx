@@ -17,7 +17,6 @@ import Box from '@mui/material/Box';
 export default function WeatherCard({temp,main,location,time,iconId}) {
 
   return (
-    <Stack sx={{ pt: 1 }} spacing={{ xs: 2, sm: 2 }} direction='row' useFlexGap flexWrap='wrap' justifyContent='center' alignItems='center'>
     <Link to={ROUTESNAMES.weather} className='no-decoration'>
         <Card sx={{ display: 'flex' }}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -40,6 +39,5 @@ export default function WeatherCard({temp,main,location,time,iconId}) {
         <CardMedia component='img' sx={{ width: 120 }} image={`https://openweathermap.org/img/wn/${iconId}@2x.png`} alt='Live from space album cover' />
         </Card>
     </Link>
-    </Stack>
   );
 }

@@ -13,6 +13,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Card from '@mui/material/Card';
 
 export default function Task({actions,taskItem}) {
+
   return (
     <Card sx={{ display: 'flex',flexWrap:'wrap-reverse',justifyContent:'space-between',alignItems:'center' ,padding:3,}}>
 
@@ -38,7 +39,7 @@ export default function Task({actions,taskItem}) {
         size='small'  
         onClick={()=>actions.onToggleArchiveItem(taskItem)}
         >
-          {taskItem.is_archived?<UnarchiveIcon fontSize='inherit' />:<ArchiveIcon fontSize='inherit' />}
+          {taskItem.is_archived?<UnarchiveIcon fontSize='inherit' />:<ArchiveIcon color="secondary"  fontSize='inherit' />}
         </IconButton>
 
         <IconButton  

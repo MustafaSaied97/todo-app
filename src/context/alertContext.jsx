@@ -7,14 +7,14 @@ export const AlertProvider = ({ children }) => {
     isOpen: false,
     type: 'success',
     message: '',
-    duration:200,
+    duration:2000,
   });
 
   return (
     <AlertContext.Provider
       value={{
         ...state,
-        onOpen: ({type, message, duration=200}) => setState({ isOpen: true, type, message, duration }),
+        onOpen: ({type, message, duration=2000}) => setState({ isOpen: true, type, message, duration }),
         onClose: () => setState({ isOpen: false, type: '', message: '', duration:200 }),
       }}>
       {children}

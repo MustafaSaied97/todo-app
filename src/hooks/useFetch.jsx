@@ -34,12 +34,3 @@ export default function useFetch({ method, url, body = {}},deps=[]) {
 
     return { data, loading, error };
 }
-// (async () => {
-    //   let coordinates=await getCurrentLocation()
-    //   setCoordinates(coordinates)
-    // })();
-
-      // const { data, loading, error } = useFetch({
-  //   url:`${ENDPOINTS.getCurrentWeather.url}?lat=${coordinates?.lat}&lon=${coordinates?.lon}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`,
-  //   method:ENDPOINTS.getCurrentWeather.method,
-  // },[coordinates])

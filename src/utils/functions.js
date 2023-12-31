@@ -34,7 +34,11 @@ export function LocalStorage({ type, key, value, callBack }) {
         }
         case 'get': {
             let storageCopy = JSON.parse(localStorage.getItem(localStorageAppKey));
-            return key ? storageCopy[key] ?? null : storageCopy;
+            if(key in storageCopy){
+                return storageCopy[key]
+            }else{
+                return null
+            }
         }
         case 'delete': {
             let storageCopy = JSON.parse(localStorage.getItem(localStorageAppKey));
@@ -62,11 +66,15 @@ export function LocalStorage({ type, key, value, callBack }) {
             return;
         }
         default:
-            () => { };
+            break;
     }
 };
 
 export function getCurrentLocation() {
+    const defaultCoordinates={
+        lat: 31.2001,
+        lon: 29.9187
+    }
     return new Promise((resolve, reject) => {
         let isSupported = 'navigator' in window && 'geolocation' in navigator;
 
@@ -80,7 +88,7 @@ export function getCurrentLocation() {
 
         const error = (error) => {
             console.error("Error getting location:", error);
-            reject(error);
+            resolve(defaultCoordinates);
         }
 
         const options = {
@@ -92,7 +100,7 @@ export function getCurrentLocation() {
         if (isSupported) {
             navigator.geolocation.getCurrentPosition(success, error, options);
         } else {
-            reject(new Error('Geolocation is not supported in this browser.'));
+            resolve(defaultCoordinates);
         }
     });
 };
