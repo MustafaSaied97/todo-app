@@ -156,6 +156,7 @@ export default function TodoPage() {
         {tasks.map((taskItem, index) => (
           <Task taskItem={taskItem} actions={actions} key={index} />
         ))}
+        {/* {!tasks.length&&<img src=""  style={{marginLeft:'auto',marginRight:'auto',width:'100%',maxWidth:'1000px'}} alt="" />} */}
         {!tasks.length&&<img src={emptyTasksImg}  style={{marginLeft:'auto',marginRight:'auto',width:'100%',maxWidth:'400px'}} alt="" />}
       </Stack>
     </section>

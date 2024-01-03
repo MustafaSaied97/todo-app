@@ -76,7 +76,7 @@ export default function ModalForm({open,mode,handleClose,data={},actions}) {
         <DialogContent dividers>
 
           <TextField 
-          sx={{ mb: 2 }}  
+          sx={{ mb: 2, }}  
           id="title" 
           label="title" 
           variant="filled" 
